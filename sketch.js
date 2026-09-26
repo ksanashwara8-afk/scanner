@@ -17,7 +17,8 @@ function setup() {
     r.SetTargetFPS(FPS);
 }
 
-function update(rectWidth, blueX, blueWidth) {
+
+function update(rectWidth) {
     const speed = 2;
 
     if (rectX >= screenWidth - rectWidth) direction = -1;
@@ -25,26 +26,43 @@ function update(rectWidth, blueX, blueWidth) {
 
     rectX = rectX + (speed * direction);
 
-    const particleStart = blueX - rectWidth;
-    const particleEnd = blueWidth + blueX;
-    const c = (rectX >= particleStart && rectX <= particleEnd) ? r.RED : r.WHITE;
-    return c;
+}
 
+
+function isScannerOverlapping(start1, end1, start2, end2) {
+    return (rectX >= start1 && rectX <= end1 || rectX >= start2 && rectX <= end2);
+
+}
+
+function identifyParticle(rectWidth, p1X, p1Width, p2X, p2Width) {
+    const start1 = p1X - rectWidth;
+    const end1 = p1Width + p1X;
+
+    const start2 = p2X - rectWidth;
+    const end2 = p2Width + p2X;
+
+    const c = isScannerOverlapping(start1, end1, start2, end2) ? r.RED : r.WHITE;
+    return c;
 }
 
 function draw() {
     const rectWidth = 40;
     const rectY = 0;
 
-    const blueX = 250;
-    const blueY = 0;
-    const blueWidth = 90;
+    const p1X = 250;
+    const p1Width = 90;
+
+    const p2X = 500;
+    const p2Width = 20;
 
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    const color = update(rectWidth, blueX, blueWidth);
-    r.DrawRectangle(blueX, blueY, blueWidth, screenHeight, r.SKYBLUE);
+    update(rectWidth);
+    color = identifyParticle(rectWidth, p1X, p1Width, p2X, p2Width);
+
+    r.DrawRectangle(p1X, rectY, p1Width, screenHeight, r.SKYBLUE);
+    r.DrawRectangle(p2X, rectY, p2Width, screenHeight, r.SKYBLUE);
     r.DrawRectangle(rectX, rectY, rectWidth, screenHeight, color);
 
     r.EndDrawing();
