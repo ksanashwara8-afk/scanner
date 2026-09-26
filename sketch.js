@@ -43,9 +43,9 @@ function draw() {
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    const co = update(rectWidth, blueX, blueWidth);
+    const color = update(rectWidth, blueX, blueWidth);
     r.DrawRectangle(blueX, blueY, blueWidth, screenHeight, r.SKYBLUE);
-    r.DrawRectangle(rectX, rectY, rectWidth, screenHeight, co);
+    r.DrawRectangle(rectX, rectY, rectWidth, screenHeight, color);
 
     r.EndDrawing();
 }
