@@ -23,7 +23,7 @@ function setup() {
 
 
 function update(rectWidth) {
-    const speed1 = 1.5;
+    const speed1 = 1.6;
     const speed2 = 2.5;
 
     const halfWidth = screenWidth / 2;
