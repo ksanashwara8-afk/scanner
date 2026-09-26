@@ -17,13 +17,18 @@ function setup() {
     r.SetTargetFPS(FPS);
 }
 
-function update(rectWidth) {
+function update(rectWidth, blueX, blueWidth) {
     const speed = 2;
 
     if (rectX >= screenWidth - rectWidth) direction = -1;
     if (rectX < 0) direction = 1;
 
     rectX = rectX + (speed * direction);
+
+    const particleStart = blueX - rectWidth;
+    const particleEnd = blueWidth + blueX;
+    const c = (rectX >= particleStart && rectX <= particleEnd) ? r.RED : r.WHITE;
+    return c;
 
 }
 
@@ -38,9 +43,9 @@ function draw() {
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    update(rectWidth);
-    r.DrawRectangle(blueX, blueY, blueWidth, screenHeight, r.BLUE);
-    r.DrawRectangle(rectX, rectY, rectWidth, screenHeight, r.WHITE);
+    const co = update(rectWidth, blueX, blueWidth);
+    r.DrawRectangle(blueX, blueY, blueWidth, screenHeight, r.SKYBLUE);
+    r.DrawRectangle(rectX, rectY, rectWidth, screenHeight, co);
 
     r.EndDrawing();
 }
