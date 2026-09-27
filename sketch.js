@@ -69,6 +69,7 @@ function draw() {
     r.ClearBackground(r.BLACK);
 
     update(rectWidth);
+
     const color1 = isScannerOverlapping(rectX1, rectWidth, p1X, p1Width) ? r.RED : r.WHITE;
     const color2 = isScannerOverlapping(rectX2, rectWidth, p2X, p2Width) ? r.RED : r.WHITE;
     const color3 = isScannerOverlapping(rectY3, rectWidth, p3Y, p3Width) ? r.RED : r.WHITE;
