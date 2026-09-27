@@ -4,12 +4,11 @@ const screenWidth = 700;
 const screenHeight = 500;
 
 let direction1 = 1;
-let rectX1 = 0;
-
 let direction2 = 1;
-let rectX2 = screenWidth / 2;
-
 let direction3 = 1;
+
+let rectX1 = 0;
+let rectX2 = screenWidth / 2;
 let rectY3 = 0;
 
 function running() {
