@@ -1,12 +1,17 @@
 const r = require("raylib");
 
-function isDetectorOutOfBound(start, width, upper, lower) {
+function isScannerOutOfBound(start, width, upper, lower) {
     return start + width === upper || start === lower;
 }
 
 function changeDirection(start, width, upper, lower, velocity) {
-    if (isDetectorOutOfBound(start, width, upper, lower)) return -velocity;
+    if (isScannerOutOfBound(start, width, upper, lower)) return -velocity;
     return velocity;
+}
+
+function moveScanner(start, velocity) {
+    start = start + velocity;
+    return start;
 }
 
 function isScannerOverlapping(scannerStart, scannerWidth, pStart, pWidth) {
@@ -22,8 +27,9 @@ function chooseColor(start, pStart, pWidth, scannerWidth) {
 }
 
 module.exports = {
-    isDetectorOutOfBound,
+    isScannerOutOfBound,
     changeDirection,
+    moveScanner,
     isScannerOverlapping,
     chooseColor,
 };

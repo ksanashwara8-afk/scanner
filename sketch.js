@@ -3,9 +3,7 @@ const d = require("./detector.js");
 const s1 = require("./scanner1.js");
 const s2 = require("./scanner2.js");
 const s3 = require("./scanner3.js");
-
-const screenWidth = 700;
-const screenHeight = 500;
+const w = require("./window.js");
 
 const p1X = 250;
 const p1Width = 90;
@@ -22,37 +20,38 @@ function running() {
 
 function setup() {
     r.SetTraceLogLevel(r.LOG_NONE);
-    r.InitWindow(screenWidth, screenHeight, "Rectangle");
-    r.SetTargetFPS(60);
+    r.InitWindow(w.width, w.height, "Rectangle");
+    r.SetTargetFPS(w.FPS);
 }
 
 function update() {
-    s1.start = s1.start + s1.velocity;
     s1.velocity = d.changeDirection(
         s1.start,
         s1.width,
-        screenWidth / 2,
+        w.width / 2,
         0,
         s1.velocity,
     );
 
-    s2.start = s2.start + s2.velocity;
     s2.velocity = d.changeDirection(
         s2.start,
         s2.width,
-        screenWidth,
-        screenWidth / 2,
+        w.width,
+        w.width / 2,
         s2.velocity,
     );
 
-    s3.start = s3.start + s3.velocity;
     s3.velocity = d.changeDirection(
         s3.start,
         s3.width,
-        screenHeight,
+        w.height,
         0,
         s3.velocity,
     );
+
+    s1.start = d.moveScanner(s1.start, s1.velocity);
+    s2.start = d.moveScanner(s2.start, s2.velocity);
+    s3.start = d.moveScanner(s3.start, s3.velocity);
 }
 
 function drawRange(x, y, width, height, color) {
@@ -67,13 +66,13 @@ function draw() {
     const color2 = d.chooseColor(s2.start, p2X, p2Width, s2.width);
     const color3 = d.chooseColor(s3.start, p3Y, p3Width, s3.width);
 
-    drawRange(p1X, 0, p1Width, screenHeight, r.SKYBLUE);
-    drawRange(p2X, 0, p2Width, screenHeight, r.SKYBLUE);
-    drawRange(0, p3Y, screenWidth, p3Width, r.SKYBLUE);
+    drawRange(p1X, 0, p1Width, w.height, r.SKYBLUE);
+    drawRange(p2X, 0, p2Width, w.height, r.SKYBLUE);
+    drawRange(0, p3Y, w.width, p3Width, r.SKYBLUE);
 
-    drawRange(s1.start, 0, s1.width, screenHeight, color1);
-    drawRange(s2.start, 0, s2.width, screenHeight, color2);
-    drawRange(0, s3.start, screenWidth, s3.width, color3);
+    drawRange(s1.start, 0, s1.width, w.height, color1);
+    drawRange(s2.start, 0, s2.width, w.height, color2);
+    drawRange(0, s3.start, w.width, s3.width, color3);
 
     r.EndDrawing();
 }
