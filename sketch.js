@@ -5,13 +5,13 @@ const s2 = require("./scanner2.js");
 const s3 = require("./scanner3.js");
 const w = require("./window.js");
 
-const p1X = 250;
+const p1Start = 250;
 const p1Width = 90;
 
-const p2X = 500;
+const p2Start = 500;
 const p2Width = 20;
 
-const p3Y = 220;
+const p3Start = 220;
 const p3Width = 35;
 
 function running() {
@@ -62,13 +62,13 @@ function draw() {
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    const color1 = d.chooseColor(s1.start, p1X, p1Width, s1.width);
-    const color2 = d.chooseColor(s2.start, p2X, p2Width, s2.width);
-    const color3 = d.chooseColor(s3.start, p3Y, p3Width, s3.width);
+    const color1 = d.chooseColor(s1.start, p1Start, p1Width, s1.width);
+    const color2 = d.chooseColor(s2.start, p2Start, p2Width, s2.width);
+    const color3 = d.chooseColor(s3.start, p3Start, p3Width, s3.width);
 
-    drawRange(p1X, 0, p1Width, w.height, r.SKYBLUE);
-    drawRange(p2X, 0, p2Width, w.height, r.SKYBLUE);
-    drawRange(0, p3Y, w.width, p3Width, r.SKYBLUE);
+    drawRange(p1Start, 0, p1Width, w.height, r.SKYBLUE);
+    drawRange(p2Start, 0, p2Width, w.height, r.SKYBLUE);
+    drawRange(0, p3Start, w.width, p3Width, r.SKYBLUE);
 
     drawRange(s1.start, 0, s1.width, w.height, color1);
     drawRange(s2.start, 0, s2.width, w.height, color2);
