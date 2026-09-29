@@ -5,18 +5,19 @@ function isScannerOutOfBound(start, width, upper, lower) {
 }
 
 function changeDirection(start, width, upper, lower, velocity) {
-    if (isScannerOutOfBound(start, width, upper, lower)) return -velocity;
-    return velocity;
+    return isScannerOutOfBound(start, width, upper, lower)
+        ? -velocity
+        : velocity;
 }
 
 function moveScanner(start, velocity) {
-    start = start + velocity;
-    return start;
+    return start + velocity;
 }
 
 function isScannerOverlapping(scannerStart, scannerWidth, pStart, pWidth) {
     const scannerEnd = scannerStart + scannerWidth;
     const pEnd = pStart + pWidth;
+
     return scannerEnd >= pStart && scannerStart < pEnd;
 }
 
@@ -27,9 +28,7 @@ function chooseColor(start, pStart, pWidth, scannerWidth) {
 }
 
 module.exports = {
-    isScannerOutOfBound,
     changeDirection,
     moveScanner,
-    isScannerOverlapping,
     chooseColor,
 };
