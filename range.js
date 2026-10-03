@@ -1,20 +1,26 @@
 const r = require("raylib");
 
-function createRange(x, y, width, height) {
-    const range = {
-        x: x,
-        y: y,
-        width: width,
-        height: height,
-    };
-    return range;
-}
-
 function drawRange(range, color) {
     r.DrawRectangleRec(range, color);
 }
 
+function isScannerOverlapping(sStart, sWidth, pStart, pWidth) {
+    const sEnd = sStart + sWidth;
+    const pEnd = pStart + pWidth;
+
+    return sEnd >= pStart && sStart < pEnd;
+}
+
+function chooseColor(s, p) {
+    if (s.axis === "x") {
+        return isScannerOverlapping(s.x, s.width, p.x, p.width)
+            ? r.RED
+            : r.WHITE;
+    }
+    return isScannerOverlapping(s.y, s.height, p.y, p.height) ? r.RED : r.WHITE;
+}
+
 module.exports = {
-    createRange,
     drawRange,
+    chooseColor,
 };

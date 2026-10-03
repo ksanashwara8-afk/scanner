@@ -16,10 +16,6 @@ let p1 = {};
 let p2 = {};
 let p3 = {};
 
-let velocity1 = 1;
-let velocity2 = 3;
-let velocity3 = 2;
-
 function running() {
     return !r.WindowShouldClose();
 }
@@ -29,19 +25,28 @@ function setup() {
     r.InitWindow(w.width, w.height, "Particle Detector");
     r.SetTargetFPS(w.FPS);
 
-    s1 = d.createRange(0, 0, 40, w.height);
-    s2 = d.createRange(w.width / 2, 0, 40, w.height);
-    s3 = d.createRange(0, 0, w.width, 40);
+    s1 = d.createDetector(0, 0, 40, w.height, w.width / 2, 0, 1, "x");
+    s2 = d.createDetector(
+        w.width / 2,
+        0,
+        40,
+        w.height,
+        w.width,
+        w.width / 2,
+        3,
+        "x",
+    );
+    s3 = d.createDetector(0, 0, w.width, 40, w.height, 0, 2, "y");
 
-    p1 = p.createParticle(260, 0, 90, w.height);
-    p2 = p.createParticle(500, 0, 20, w.height);
-    p3 = p.createParticle(0, 200, w.width, 35);
+    p1 = p.createParticle(260, 0, 90, w.height, "x");
+    p2 = p.createParticle(500, 0, 20, w.height, "x");
+    p3 = p.createParticle(0, 200, w.width, 35, "y");
 }
 
 function update() {
-    velocity1 = d.updateX(s1, velocity1, w.width / 2, 0);
-    velocity2 = d.updateX(s2, velocity2, w.width, w.width / 2);
-    velocity3 = d.updateY(s3, velocity3, w.height, 0);
+    d.updateX(s1);
+    d.updateX(s2);
+    d.updateY(s3);
 }
 
 function draw() {
@@ -52,9 +57,9 @@ function draw() {
     p.drawParticle(p2);
     p.drawParticle(p3);
 
-    d.drawRange(s1, d.chooseColor(s1, p1, 1));
-    d.drawRange(s2, d.chooseColor(s2, p2, 1));
-    d.drawRange(s3, d.chooseColor(s3, p3, 0));
+    d.drawDetector(s1, p1);
+    d.drawDetector(s2, p2);
+    d.drawDetector(s3, p3);
 
     r.EndDrawing();
 }

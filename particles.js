@@ -1,13 +1,18 @@
 const r = require("raylib");
-const d = require("./detector.js");
+const rg = require("./range.js");
 
-function createParticle(x, y, width, height) {
-    const particle = d.createRange(x, y, width, height);
-    return particle;
+function createParticle(x, y, width, height, axis) {
+    return (particle = {
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        axis: axis,
+    });
 }
 
-function drawParticle(particle) {
-    d.drawRange(particle, r.SKYBLUE);
+function drawParticle(p) {
+    rg.drawRange(p.x, p.y, p.width, p.height, r.SKYBLUE);
 }
 
 module.exports = {
