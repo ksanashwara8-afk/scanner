@@ -1,7 +1,7 @@
 const r = require("raylib");
 
-function drawRange(range, color) {
-    r.DrawRectangleRec(range, color);
+function drawRange(x, y, width, height, color) {
+    r.DrawRectangle(x, y, width, height, color);
 }
 
 function isScannerOverlapping(sStart, sWidth, pStart, pWidth) {

@@ -2,12 +2,6 @@ const r = require("raylib");
 const d = require("./detector.js");
 const p = require("./particles.js");
 
-const w = {
-    width: 700,
-    height: 500,
-    FPS: 60,
-};
-
 let s1 = {};
 let s2 = {};
 let s3 = {};
@@ -21,6 +15,12 @@ function running() {
 }
 
 function setup() {
+    const w = {
+        width: 700,
+        height: 500,
+        FPS: 60,
+    };
+
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(w.width, w.height, "Particle Detector");
     r.SetTargetFPS(w.FPS);
@@ -44,9 +44,9 @@ function setup() {
 }
 
 function update() {
-    d.updateX(s1);
-    d.updateX(s2);
-    d.updateY(s3);
+    s1.velocity = d.updateX(s1);
+    s2.velocity = d.updateX(s2);
+    s3.velocity = d.updateY(s3);
 }
 
 function draw() {
