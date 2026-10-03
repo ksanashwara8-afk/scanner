@@ -1,20 +1,16 @@
-const start1 = 250;
-const width1 = 90;
+const r = require("raylib");
+const d = require("./detector.js");
 
-const start2 = 500;
-const width2 = 20;
+function createParticle(x, y, width, height) {
+    const particle = d.createRange(x, y, width, height);
+    return particle;
+}
 
-const start3 = 220;
-const width3 = 35;
-
-const end = 0;
+function drawParticle(particle) {
+    d.drawRange(particle, r.SKYBLUE);
+}
 
 module.exports = {
-    start1,
-    width1,
-    start2,
-    width2,
-    start3,
-    width3,
-    end,
+    createParticle,
+    drawParticle,
 };
