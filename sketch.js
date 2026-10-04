@@ -6,15 +6,7 @@ function running() {
     return !r.WindowShouldClose();
 }
 
-function setup() {
-    let world = {
-        s1: {},
-        s2: {},
-        s3: {},
-        p1: {},
-        p2: {},
-        p3: {},
-    };
+function setup(world) {
     const w = {
         width: 700,
         height: 500,

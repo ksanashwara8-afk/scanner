@@ -8,7 +8,8 @@ function loop(world) {
 }
 
 function main() {
-    const world = sketch.setup();
+    const world = {};
+    sketch.setup(world);
     loop(world);
     sketch.teardown();
 }
