@@ -3,11 +3,11 @@ const rg = require("./range.js");
 
 function createParticle(x, y, width, height, axis) {
     return (particle = {
-        x: x,
-        y: y,
-        width: width,
-        height: height,
-        axis: axis,
+        x,
+        y,
+        width,
+        height,
+        axis,
     });
 }
 

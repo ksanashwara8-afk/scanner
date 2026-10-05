@@ -2,14 +2,14 @@ const rg = require("./range.js");
 
 function createDetector(x, y, width, height, upper, lower, velocity, axis) {
     return (range = {
-        x: x,
-        y: y,
-        width: width,
-        height: height,
-        upper: upper,
-        lower: lower,
-        velocity: velocity,
-        axis: axis,
+        x,
+        y,
+        width,
+        height,
+        upper,
+        lower,
+        velocity,
+        axis,
     });
 }
 
