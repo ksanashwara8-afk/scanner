@@ -1,7 +1,7 @@
 const rg = require("./range.js");
 
 function createDetector(x, y, width, height, upper, lower, velocity, axis) {
-    return (range = {
+    return {
         x,
         y,
         width,
@@ -10,7 +10,7 @@ function createDetector(x, y, width, height, upper, lower, velocity, axis) {
         lower,
         velocity,
         axis,
-    });
+    };
 }
 
 function drawDetector(s, p) {

@@ -2,13 +2,13 @@ const r = require("raylib");
 const rg = require("./range.js");
 
 function createParticle(x, y, width, height, axis) {
-    return (particle = {
+    return {
         x,
         y,
         width,
         height,
         axis,
-    });
+    };
 }
 
 function drawParticle(p) {
